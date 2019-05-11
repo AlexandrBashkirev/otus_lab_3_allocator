@@ -22,10 +22,8 @@ namespace flaber
 		list_node& operator=(const list_node<T>& node) = delete;
 		list_node& operator=(list_node<T>&& node) = delete;
 
-		template<typename T, class Allocator>
-		friend class list;
-		template<typename T>
-		friend class list_iterator;
+		template<typename, typename > friend class list;
+		template<typename, bool> friend class _list_iterator;
 	};
 
 }

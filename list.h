@@ -12,11 +12,17 @@ namespace flaber
 	class list
 	{
 	public:
-		void insert(size_t pos, T &value);
-		void insert(size_t pos, const T &value);
+		void insert_at(size_t pos, T &value);
+		void insert_at(size_t pos, const T &value);
 		template<typename... Args>
-		void emplace(size_t pos, Args&&... args);
-		void remove(size_t pos);
+		void emplace_at(size_t pos, Args&&... args);
+		void remove_at(size_t pos);
+
+		void insert(list_node<T>* prev_it, T &value);
+		void insert(list_node<T>* prev_it, const T &value);
+		template<typename... Args>
+		void emplace(list_node<T>* prev_it, Args&&... args);
+		void remove(list_node<T>* prev_it);
 
 		void push_front(T& value);
 		void push_front(const T& value);
@@ -33,6 +39,9 @@ namespace flaber
 
 		list_iterator<T> begin();
 		list_iterator<T> end();
+
+		list_iterator_c<T> cbegin();
+		list_iterator_c<T> cend();
 
 		void clear();
 		size_t size();
@@ -99,13 +108,13 @@ namespace flaber
 	}
 
 	template<typename T, typename Allocator>
-	void list<T, Allocator>::insert(size_t pos, T &value)
+	void list<T, Allocator>::insert_at(size_t pos, T &value)
 	{
 		assert(pos >= 0 && pos < _size);
 		_insert(prev_elem(pos), value);
 	}
 	template<typename T, typename Allocator>
-	void list<T, Allocator>::insert(size_t pos, const T &value)
+	void list<T, Allocator>::insert_at(size_t pos, const T &value)
 	{
 		assert(pos >= 0 && pos < _size);
 		_insert(prev_elem(pos), value);
@@ -113,16 +122,41 @@ namespace flaber
 
 	template<typename T, typename Allocator>
 	template<typename... Args>
-	void list<T, Allocator>::emplace(size_t pos, Args&&... args)
+	void list<T, Allocator>::emplace_at(size_t pos, Args&&... args)
 	{
+		assert(pos >= 0 && pos < _size);
 		_insert(prev_elem(pos), args);
 	}
 
 	template<typename T, typename Allocator>
-	void list<T, Allocator>::remove(size_t pos)
+	void list<T, Allocator>::remove_at(size_t pos)
 	{
 		assert(pos >= 0 && pos < _size);
 		_remove(prev_elem(pos));
+	}
+
+	template<typename T, typename Allocator>
+	void list<T, Allocator>::insert(list_node<T>* prev_it, T &value)
+	{
+		_insert(prev_it, value);
+	}
+	template<typename T, typename Allocator>
+	void list<T, Allocator>::insert(list_node<T>* prev_it, const T &value)
+	{
+		_insert(prev_it, value);
+	}
+
+	template<typename T, typename Allocator>
+	template<typename... Args>
+	void list<T, Allocator>::emplace(list_node<T>* prev_it, Args&&... args)
+	{
+		_insert(prev_it, args);
+	}
+
+	template<typename T, typename Allocator>
+	void list<T, Allocator>::remove(list_node<T>* prev_it)
+	{
+		_remove(prev_it);
 	}
 
 	template<typename T, typename Allocator>
@@ -191,7 +225,7 @@ namespace flaber
 		list_node<T>* result = nullptr;
 		list_node<T>* prev = first;
 
-		int cur = 0;
+		size_t cur = 0;
 		while (cur < pos)
 		{
 			result = prev;
@@ -212,6 +246,18 @@ namespace flaber
 	list_iterator<T> list<T, Allocator>::begin()
 	{
 		return list_iterator<T>(first);
+	}
+
+	template<typename T, typename Allocator>
+	list_iterator_c<T> list<T, Allocator>::cend()
+	{
+		return list_iterator_c<T>(nullptr);
+	}
+
+	template<typename T, typename Allocator>
+	list_iterator_c<T> list<T, Allocator>::cbegin()
+	{
+		return list_iterator_c<T>(first);
 	}
 
 	template<typename T, typename Allocator>

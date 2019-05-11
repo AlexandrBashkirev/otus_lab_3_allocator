@@ -21,16 +21,26 @@ int main()
 	int a = 4;
 	l.push_back(a);
 
-	l.insert(0, 10);
+	l.insert_at(0, 10);
 
-	std::for_each(l.begin(), l.end(), [](int r) {std::cout << r << "\n";  });
+	/*std::for_each(l.cbegin(), l.cend(), []( const int& r) {
+		r = 5; 
+	});*/
+
+	std::for_each(l.cbegin(), l.cend(), [](const int& r) {
+		std::cout << r << "\n";
+	});
+
 	std::cout << "l.size == " << l.size() << "\n";
 
 	l.pop_front();
-	l.pop_front();
-	l.pop_front();
-	l.pop_front();
-	std::for_each(l.begin(), l.end(), [](int r) {std::cout << r << "\n";  });
+
+	std::for_each(l.begin(), l.end(), [](int& r) {
+		r = 5; });
+
+	std::for_each(l.begin(), l.end(), [](int& r) {
+		std::cout << r << "\n";  });
+
 	std::cout << "l.size == " << l.size() << "\n";
 }
 
