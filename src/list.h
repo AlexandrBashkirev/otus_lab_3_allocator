@@ -134,7 +134,7 @@ namespace flaber
 	void list<T, Allocator>::emplace_at(size_t pos, Args&&... args)
 	{
 		assert(pos >= 0 && pos < _size);
-		_insert(prev_elem(pos), args);
+		_insert(prev_elem(pos), args...);
 	}
 
 	template<typename T, typename Allocator>
@@ -159,7 +159,7 @@ namespace flaber
 	template<typename... Args>
 	void list<T, Allocator>::emplace(list_node<T>* prev_it, Args&&... args)
 	{
-		_insert(prev_it, args);
+		_insert(prev_it, args...);
 	}
 
 	template<typename T, typename Allocator>
