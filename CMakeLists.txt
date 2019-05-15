@@ -7,7 +7,7 @@ configure_file(version.h.in ${PROJECT_SOURCE_DIR}/version.h)
 include_directories(${CMAKE_BINARY_DIR})
 
 add_subdirectory(src)
-add_subdirectory(test)
+add_subdirectory(tests)
 
 set(CPACK_GENERATOR DEB)
 
