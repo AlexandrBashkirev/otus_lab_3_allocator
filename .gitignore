@@ -5,9 +5,7 @@ test_version/
 Release/
 version/
 Debug/
-ip_worker_lib/
 otus_lab_2/
-tests/
 version_lib/
 otus_lab_2.sln
 otus_lab_3_allocator/
