@@ -38,14 +38,18 @@ namespace flaber
 		void pop_back();
 
 		list_iterator<T> begin();
+		list_iterator<T> back();
 		list_iterator<T> end();
 
 		list_iterator_c<T> cbegin();
+		list_iterator_c<T> cback();
 		list_iterator_c<T> cend();
 
 		void clear();
 		size_t size();
 		bool is_empty();
+
+		~list();
 
 	private:
 
@@ -107,6 +111,11 @@ namespace flaber
 		_size--;
 	}
 
+	template<typename T, typename Allocator>
+	list<T, Allocator>::~list()
+	{
+		clear();
+	}
 	template<typename T, typename Allocator>
 	void list<T, Allocator>::insert_at(size_t pos, T &value)
 	{
@@ -237,21 +246,21 @@ namespace flaber
 	}
 
 	template<typename T, typename Allocator>
-	list_iterator<T> list<T, Allocator>::end()
-	{
-		return list_iterator<T>(nullptr);
-	}
-
-	template<typename T, typename Allocator>
 	list_iterator<T> list<T, Allocator>::begin()
 	{
 		return list_iterator<T>(first);
 	}
 
 	template<typename T, typename Allocator>
-	list_iterator_c<T> list<T, Allocator>::cend()
+	list_iterator<T> list<T, Allocator>::back()
 	{
-		return list_iterator_c<T>(nullptr);
+		return list_iterator<T>(last);
+	}
+
+	template<typename T, typename Allocator>
+	list_iterator<T> list<T, Allocator>::end()
+	{
+		return list_iterator<T>(nullptr);
 	}
 
 	template<typename T, typename Allocator>
@@ -261,9 +270,24 @@ namespace flaber
 	}
 
 	template<typename T, typename Allocator>
+	list_iterator_c<T> list<T, Allocator>::cback()
+	{
+		return list_iterator_c<T>(last);
+	}
+
+	template<typename T, typename Allocator>
+	list_iterator_c<T> list<T, Allocator>::cend()
+	{
+		return list_iterator_c<T>(nullptr);
+	}
+
+	template<typename T, typename Allocator>
 	void list<T, Allocator>::clear()
 	{
+		while (first != nullptr)
+			pop_front();
 	}
+
 	template<typename T, typename Allocator>
 	bool list<T, Allocator>::is_empty()
 	{

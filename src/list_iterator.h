@@ -20,6 +20,7 @@ namespace flaber
 
 		value_ref operator*()
 		{
+			assert(current != nullptr);
 			return current->value;
 		}
 
