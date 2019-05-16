@@ -19,8 +19,6 @@ struct log_allocator {
 
 	template <class U> log_allocator(const log_allocator<U>&) { std::cout << "+" << __FUNCTION__ << std::endl; }
 	template <class U> log_allocator( log_allocator<U>&&) { std::cout << "+" << __FUNCTION__ << std::endl; }
-	template <class U> log_allocator& operator=(const log_allocator& node) { std::cout << "+" << __FUNCTION__ << std::endl; }
-	template <class U> log_allocator& operator=(log_allocator&& node) { std::cout << "+" << __FUNCTION__ << std::endl; }
 	log_allocator() { std::cout << "+" << __FUNCTION__ << std::endl; }
 	~log_allocator() { std::cout << "-" << __FUNCTION__ << std::endl; }
 
