@@ -16,11 +16,10 @@ struct log_allocator {
 		using other = log_allocator<U>;
 	};
 
-
-	template <class U> log_allocator(const log_allocator<U>&) { std::cout << "+" << __FUNCTION__ << std::endl; }
+	/*template <class U> log_allocator(const log_allocator<U>&) { std::cout << "+" << __FUNCTION__ << std::endl; }
 	template <class U> log_allocator( log_allocator<U>&&) { std::cout << "+" << __FUNCTION__ << std::endl; }
 	log_allocator() { std::cout << "+" << __FUNCTION__ << std::endl; }
-	~log_allocator() { std::cout << "-" << __FUNCTION__ << std::endl; }
+	~log_allocator() { std::cout << "-" << __FUNCTION__ << std::endl; }*/
 
 	T *allocate(std::size_t n) {
 		auto p = std::malloc(n * sizeof(T));
