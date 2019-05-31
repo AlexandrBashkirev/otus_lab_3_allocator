@@ -2,6 +2,8 @@ project(${PROJECT_NAME}_tests)
 
 find_package(Boost COMPONENTS unit_test_framework REQUIRED)
 
+include_directories(${Boost_INCLUDE_DIRS})
+
 list(APPEND ${PROJECT_NAME}_SOURCES
     list_test.cpp)
 
