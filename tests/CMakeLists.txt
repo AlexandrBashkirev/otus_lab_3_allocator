@@ -2,7 +2,7 @@ project(${PROJECT_NAME}_tests)
 
 find_package(Boost COMPONENTS unit_test_framework REQUIRED)
 
-include_directories(${Boost_INCLUDE_DIRS})
+include_directories(${Boost_INCLUDE_DIRS} ${CMAKE_SOURCE_DIR}/src)
 
 list(APPEND ${PROJECT_NAME}_SOURCES
     list_test.cpp)
@@ -13,8 +13,12 @@ set_target_properties(${PROJECT_NAME} PROPERTIES
     CXX_STANDARD 17
     CXX_STANDARD_REQUIRED ON
     COMPILE_OPTIONS "-Wpedantic;-Wall;-Wextra"
-    INCLUDE_DIRECTORIES ${CMAKE_SOURCE_DIR}/src
 )
+
+target_link_libraries(${PROJECT_NAME}
+	${Boost_LIBRARIES})
+set_target_properties(${PROJECT_NAME} PROPERTIES
+	COMPILE_DEFINITIONS BOOST_TEST_DYN_LINK)
 
 enable_testing()
 
