@@ -3,7 +3,8 @@ language: cpp
 compiler: gcc
 before_script:
 - sudo apt update
-- sudo apt install libboost-test-dev libspdlog-dev -y
+- sudo apt install libspdlog-dev -y
+- sudo apt-get install libboost1.59-test-dev
 script:
 - cmake .
 - cmake --build .

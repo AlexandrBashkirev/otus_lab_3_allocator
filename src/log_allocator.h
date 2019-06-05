@@ -38,7 +38,7 @@ struct log_allocator {
 	void construct(U *p, Args &&...args) {
 		std::cout << __FUNCTION__ << "[p = " << p << "]" << std::endl;
 		new(p) U(std::forward<Args>(args)...);
-	};
+	}
 
 	void destroy(T *p) {
 		std::cout << __FUNCTION__ << "[p = " << p << "]" << std::endl;
