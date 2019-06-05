@@ -1,9 +1,10 @@
-#define BOOST_TEST_DYN_LINK
-#define BOOST_CHECK_EQUAL_MODULE list_test
+#define BOOST_TEST_MODULE list_test
 #include <boost/test/unit_test.hpp>
 
 #include "list.h"
 #include "fallocator.h"
+
+BOOST_AUTO_TEST_SUITE(allocator_test_suite)
 
 BOOST_AUTO_TEST_CASE(list_test)
 {
@@ -39,6 +40,4 @@ BOOST_AUTO_TEST_CASE(list_test)
   BOOST_CHECK_EQUAL(l.is_empty(), true);
 }
 
-BOOST_AUTO_TEST_CASE(allocator_test)
-{
-}
+BOOST_AUTO_TEST_SUITE_END()
