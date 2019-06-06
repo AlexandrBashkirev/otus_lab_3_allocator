@@ -1,5 +1,7 @@
 list(APPEND ${PROJECT_NAME}_SOURCES
-    otus_lab_3_allocator.cpp)
+    otus_lab_3_allocator.cpp
+    factorial.cpp
+)
 
 add_executable(${PROJECT_NAME} ${${PROJECT_NAME}_SOURCES})
 

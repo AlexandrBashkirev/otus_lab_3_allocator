@@ -6,8 +6,6 @@ configure_file(version.h.in ${PROJECT_SOURCE_DIR}/version.h)
 
 include_directories(${CMAKE_BINARY_DIR})
 
-
-
 set(CPACK_GENERATOR DEB)
 
 set(CPACK_PACKAGE_VERSION_MAJOR "${PROJECT_VERSION_MAJOR}")

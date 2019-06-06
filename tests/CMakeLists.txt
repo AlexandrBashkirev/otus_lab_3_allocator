@@ -5,7 +5,8 @@ find_package(Boost COMPONENTS unit_test_framework REQUIRED)
 include_directories(${Boost_INCLUDE_DIRS} ${CMAKE_SOURCE_DIR}/src)
 
 list(APPEND ${PROJECT_NAME}_SOURCES
-    list_test.cpp)
+    list_test.cpp
+    factorial.cpp)
 
 add_executable(${PROJECT_NAME}_tests ${${PROJECT_NAME}_SOURCES})
 
@@ -20,8 +21,5 @@ set_target_properties(${PROJECT_NAME}_tests PROPERTIES
 
 target_link_libraries(${PROJECT_NAME}_tests
 	${Boost_LIBRARIES})
-
-
-
 
 add_test(NAME ${PROJECT_NAME}_tests COMMAND ${PROJECT_NAME}_tests)
