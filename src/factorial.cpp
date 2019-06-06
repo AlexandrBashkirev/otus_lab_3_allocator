@@ -2,9 +2,9 @@
 
 namespace flaber
 {
-	size_t factorial(size_t t)
+	unsigned int factorial(unsigned int t)
 	{
-		size_t result = 1;
+		unsigned int result = 1;
 
 		for (int i = 1; i <= t; ++i)
 			result *= i;

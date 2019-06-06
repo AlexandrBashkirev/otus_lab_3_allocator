@@ -3,6 +3,7 @@
 
 #include "list.h"
 #include "fallocator.h"
+#include "factorial.h"
 
 BOOST_AUTO_TEST_SUITE(allocator_test_suite)
 
@@ -40,4 +41,10 @@ BOOST_AUTO_TEST_CASE(list_test)
   BOOST_CHECK_EQUAL(l.is_empty(), true);
 }
 
+BOOST_AUTO_TEST_CASE(factorial_test)
+{
+	BOOST_CHECK_EQUAL(flaber::factorial(0), 1);
+	BOOST_CHECK_EQUAL(flaber::factorial(1), 1);
+	BOOST_CHECK_EQUAL(flaber::factorial(3), 6);
+}
 BOOST_AUTO_TEST_SUITE_END()

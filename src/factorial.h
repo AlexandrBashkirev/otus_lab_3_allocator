@@ -2,5 +2,5 @@
 
 namespace flaber
 {
-	size_t factorial(size_t t);
+	unsigned int factorial(unsigned int t);
 }
