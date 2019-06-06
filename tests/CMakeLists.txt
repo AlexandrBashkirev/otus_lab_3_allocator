@@ -6,7 +6,7 @@ include_directories(${Boost_INCLUDE_DIRS} ${CMAKE_SOURCE_DIR}/src)
 
 list(APPEND ${PROJECT_NAME}_SOURCES
     list_test.cpp
-    factorial.cpp)
+    ${CMAKE_SOURCE_DIR}/src/factorial.cpp)
 
 add_executable(${PROJECT_NAME}_tests ${${PROJECT_NAME}_SOURCES})
 
