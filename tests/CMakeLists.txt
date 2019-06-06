@@ -9,7 +9,7 @@ list(APPEND ${PROJECT_NAME}_SOURCES
 
 add_executable(${PROJECT_NAME}_test ${${PROJECT_NAME}_SOURCES})
 
-set_target_properties(${PROJECT_NAME} PROPERTIES
+set_target_properties(${PROJECT_NAME}_test PROPERTIES
     CXX_STANDARD 17
     CXX_STANDARD_REQUIRED ON
     COMPILE_OPTIONS "-Wpedantic;-Wall;-Wextra"
