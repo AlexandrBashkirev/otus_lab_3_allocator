@@ -4,7 +4,7 @@ compiler: clang
 before_script:
 - sudo apt update
 - sudo apt install libspdlog-dev -y
-- sudo apt install libboost-test-dev
+- sudo apt install libboost-test-dev -y
 script:
 - cmake .
 - cmake --build .
