@@ -6,8 +6,7 @@ configure_file(version.h.in ${PROJECT_SOURCE_DIR}/version.h)
 
 include_directories(${CMAKE_BINARY_DIR})
 
-add_subdirectory(src)
-add_subdirectory(tests)
+
 
 set(CPACK_GENERATOR DEB)
 
@@ -20,3 +19,8 @@ set(CPACK_PACKAGE_CONTACT alexandr.bashkirev@gmail.com)
 set(CPACK_DEBIAN_PACKAGE_SHLIBDEPS ON)
 
 include(CPack)
+
+enable_testing()
+
+add_subdirectory(src)
+add_subdirectory(tests)
