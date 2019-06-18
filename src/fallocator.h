@@ -53,7 +53,7 @@ struct fallocator {
 		void* p = std::malloc(real_n * sizeof(T));
 		if (!p)
 			throw std::bad_alloc();
-		//std::cout << __FUNCTION__ << "[real_n = " << real_n << "]" << "[p = " << p << "]" << std::endl;
+		std::cout << __FUNCTION__ << "[real_n = " << real_n << "]" << "[p = " << p << "]" << std::endl;
 
 		batch* _batch  = new batch();
 		_batch->p = reinterpret_cast<T *>(p);
@@ -73,22 +73,25 @@ struct fallocator {
 		if(it == batchs.end())
 			throw std::bad_exception();
 
+		batch* _batch = *it;
 		for(size_t i = 0; i < n; i ++)
-			(*it)->unused.push(p + i);
-		if ((*it)->unused.size() == (*it)->s) {
-			//std::cout << __FUNCTION__ << "[p = " << (*it)->p << "]" << std::endl;
-			std::free((*it)->p);
+			_batch->unused.push(p + i);
+		if (_batch->unused.size() == _batch->s) {
+			std::cout << __FUNCTION__ << "[p = " << _batch->p << "]" << std::endl;
+			batchs.erase(it);
+			std::free(_batch->p);
+			delete _batch;
 		}
 	}
 
 	template<typename U, typename ...Args>
 	void construct(U *p, Args &&...args) {
-		//std::cout << __FUNCTION__ << "[p = " << p << "]" << std::endl;
+		std::cout << __FUNCTION__ << "[p = " << p << "]" << std::endl;
 		new(p) U(std::forward<Args>(args)...);
 	}
 
 	void destroy(T *p) {
-		//std::cout << __FUNCTION__ << "[p = " << p << "]" << std::endl;
+		std::cout << __FUNCTION__ << "[p = " << p << "]" << std::endl;
 		p->~T();
 	}
 };
